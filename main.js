@@ -10,7 +10,8 @@
 let panacek, panacekX, panacekY, panacekSirka, panacekVyska;
 let mince, minceX, minceY, minceSirka, minceVyska;
 let sirkaOkna, vyskaOkna;
-
+let score;
+let hudba, zvukMince, fanfara;
 let krok = 20;
 
 // tato funkce se spustí při načtení stránky
@@ -20,6 +21,11 @@ function priNacteniStranky() {
 	// abychom je nemuseli při každém použití znovu na stránce hledat pomocí document.querySelector
   panacek = document.getElementById("panacek"); //vytazeni panacka z HTML
   mince = document.getElementById("mince"); //vytazeni mince z HTML
+  score = document.querySelector("#score").innerHTML;
+  console.log(score);
+  hudba = document.getElementById("hudba");
+  zvukMince = document.getElementById("zvukmince");
+  fanfara = document.getElementById("zvukfanfara");
 
   //zjisteni rozmeru okna
   sirkaOkna = window.innerWidth; 
@@ -41,7 +47,8 @@ function priNacteniStranky() {
   minceVyska = mince.height;
 
 	// a vygenerujeme první minci na náhodné pozici
-  novaMince()
+  novaMince();
+
 
 }
 
@@ -51,10 +58,15 @@ function umistiPanacka() {
 }
 
 function novaMince() {
-  minceX = (Math.random() * (sirkaOkna - minceSirka));
-  minceY = (Math.random() * (vyskaOkna - minceVyska));
+  minceX = (Math.random() * (sirkaOkna - minceSirka))+10;
+  minceY = (Math.random() * (vyskaOkna - minceVyska))+10;
   mince.style.left = minceX + "px";
   mince.style.top = minceY + "px";
+}
+
+function hraj(){
+  hudba.play();
+  //hudba.loop = true;
 }
 
 // tato funkce se zavolá při stisku klávesy
@@ -63,6 +75,8 @@ function novaMince() {
 // která obsahuje znak stisknuté klávesy
 // udalost je moje definovana promenna, abych na ni mohla zavolat key, musim tam mit typ hodnoty event
 function priStiskuKlavesy(udalost) {
+ 
+  hraj();
 
 	// šipka vlevo
   if (udalost.key === "ArrowLeft"){
@@ -111,9 +125,29 @@ function priStiskuKlavesy(udalost) {
 function otestujKolizi() {
 
 if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
-  novaMince()
-
+  novaMince();
+  noveSkore();
+  sebraniMince();
+  console.log(score);  
+  score.innerHTML = score;
   }
 }
 
+function noveSkore() {
+  score = parseInt(score);
+  score = score + 1;
+  //score = score.toString();
+}
 
+function sebraniMince(){
+  zvukMince.play();
+}
+
+function vitezstvi(){
+  fanfara.play();
+}
+
+if (score==5){
+  vitezstvi();
+  alert("Získala jsi 5 minicí! VYHRÁLAS!!!");
+}
