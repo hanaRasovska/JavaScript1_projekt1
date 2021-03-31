@@ -1,10 +1,3 @@
-// toto budeš potřebovat později
-/*
-
-*/
-
-//https://www.youtube.com/watch?v=Yyz0XhmoCgc
-
 // nadefinujeme globální proměnné - jenom deklarace, nikoliv prirazeni prvku do nich
 // ty jsou pak použitelné kdekoliv v programu
 let panacek, panacekX, panacekY, panacekSirka, panacekVyska;
