@@ -124,12 +124,16 @@ if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || pan
   console.log(score);  
   score.innerHTML = score;
   }
-}
 
-function noveSkore() {
-  score = parseInt(score);
-  score = score + 1;
-  //score = score.toString();
+  if (score==5) {
+    vitezstvi();
+   }
+
+  function noveSkore() {
+    score = parseInt(score);
+    score = score + 1;
+    //score = score.toString();
+  }
 }
 
 function sebraniMince(){
@@ -138,9 +142,6 @@ function sebraniMince(){
 
 function vitezstvi(){
   fanfara.play();
+  alert("Získala jsi 5 mincí! VYHRÁLAS!!!");
 }
 
-if (score==5){
-  vitezstvi();
-  alert("Získala jsi 5 minicí! VYHRÁLAS!!!");
-}
