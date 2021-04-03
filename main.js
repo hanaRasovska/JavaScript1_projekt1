@@ -121,10 +121,6 @@ if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || pan
   novaMince();
   sebraniMince();
   }
-
-  if (pocetMinci==2) {
-    vitezstvi();
-   }
 }
 
 function sebraniMince(){
@@ -133,6 +129,9 @@ function sebraniMince(){
   //score = pocetMinci;
   score = document.querySelector("#score").innerHTML= pocetMinci;
   console.log(score); 
+  if (pocetMinci==5) {
+    vitezstvi();
+   }
 }
 
 function vitezstvi(){
